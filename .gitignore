@@ -1,0 +1,9 @@
+.venv/
+build/
+dist/
+__pycache__/
+.pytest_cache/
+*.pyc
+tests/artifacts/
+FaceGridStamper.spec
+

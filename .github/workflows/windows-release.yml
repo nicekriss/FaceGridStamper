@@ -1,0 +1,52 @@
+name: Windows build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        shell: pwsh
+        run: ./setup.ps1
+
+      - name: Run tests
+        shell: pwsh
+        run: ./.venv/Scripts/python.exe -m pytest -q
+
+      - name: Build app
+        shell: pwsh
+        run: ./build.ps1
+
+      - name: Package Windows app
+        shell: pwsh
+        run: |
+          Copy-Item LICENSE, README.md, THIRD_PARTY_NOTICES.md -Destination dist/FaceGridStamper
+          Compress-Archive -Path dist/FaceGridStamper/* -DestinationPath FaceGridStamper-${{ github.ref_name }}-windows-x64.zip -Force
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FaceGridStamper-windows-x64
+          path: FaceGridStamper-${{ github.ref_name }}-windows-x64.zip
+
+      - name: Publish release asset
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: gh release create "${{ github.ref_name }}" "FaceGridStamper-${{ github.ref_name }}-windows-x64.zip" --generate-notes --verify-tag
