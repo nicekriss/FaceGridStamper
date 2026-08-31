@@ -1,3 +1,2 @@
 @echo off
-start "" "%~dp0dist\FaceGridStamper\FaceGridStamper.exe"
-
+start "" "%~dp0dist\FaceGridStamper.exe"

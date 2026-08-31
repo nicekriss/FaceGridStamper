@@ -33,20 +33,19 @@ jobs:
         shell: pwsh
         run: ./build.ps1
 
-      - name: Package Windows app
+      - name: Name standalone Windows app
         shell: pwsh
         run: |
-          Copy-Item LICENSE, README.md, THIRD_PARTY_NOTICES.md -Destination dist/FaceGridStamper
-          Compress-Archive -Path dist/FaceGridStamper/* -DestinationPath FaceGridStamper-${{ github.ref_name }}-windows-x64.zip -Force
+          Copy-Item dist/FaceGridStamper.exe FaceGridStamper-${{ github.ref_name }}-windows-x64.exe
 
       - uses: actions/upload-artifact@v4
         with:
           name: FaceGridStamper-windows-x64
-          path: FaceGridStamper-${{ github.ref_name }}-windows-x64.zip
+          path: FaceGridStamper-${{ github.ref_name }}-windows-x64.exe
 
       - name: Publish release asset
         if: startsWith(github.ref, 'refs/tags/v')
         env:
           GH_TOKEN: ${{ github.token }}
         shell: pwsh
-        run: gh release create "${{ github.ref_name }}" "FaceGridStamper-${{ github.ref_name }}-windows-x64.zip" --generate-notes --verify-tag
+        run: gh release create "${{ github.ref_name }}" "FaceGridStamper-${{ github.ref_name }}-windows-x64.exe" --generate-notes --verify-tag

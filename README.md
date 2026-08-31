@@ -6,7 +6,7 @@
 
 ## 설치
 
-가장 간단한 방법은 [Releases](https://github.com/nicekriss/FaceGridStamper/releases)에서 최신 `windows-x64.zip`을 내려받아 압축을 풀고 `FaceGridStamper.exe`를 실행하는 것입니다. Windows SmartScreen이 표시될 수 있으며 현재 빌드는 코드 서명되지 않았습니다.
+가장 간단한 방법은 [Releases](https://github.com/nicekriss/FaceGridStamper/releases)에서 최신 `windows-x64.exe`를 내려받아 바로 실행하는 것입니다. 설치나 압축 해제가 필요하지 않습니다. 단일 파일이 내부 라이브러리를 임시로 푸는 방식이라 첫 실행은 몇 초 느릴 수 있습니다. Windows SmartScreen이 표시될 수 있으며 현재 빌드는 코드 서명되지 않았습니다.
 
 ## 빠른 사용법
 
