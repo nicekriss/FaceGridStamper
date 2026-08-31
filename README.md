@@ -33,7 +33,7 @@
 
 ## 개발 실행
 
-PowerShell에서 `setup.ps1`, `run.ps1` 순서로 실행합니다. 독립 실행 파일을 다시 만들 때는 `build.ps1`을 실행합니다.
+PowerShell에서 `run.ps1`을 실행합니다. 개발 환경이 없으면 `setup.ps1`을 자동으로 먼저 실행합니다. 의존성만 미리 설치하거나 다시 설치하고 싶을 때는 `setup.ps1`을 직접 실행할 수 있습니다. 독립 실행 파일을 다시 만들 때는 `build.ps1`을 실행합니다.
 
 얼굴 검출에는 OpenCV YuNet 모델을 사용합니다. 모델 출처: https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet
 
