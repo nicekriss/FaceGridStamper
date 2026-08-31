@@ -6,7 +6,11 @@
 
 ## 설치
 
-가장 간단한 방법은 [Releases](https://github.com/nicekriss/FaceGridStamper/releases)에서 최신 `windows-x64.exe`를 내려받아 바로 실행하는 것입니다. 설치나 압축 해제가 필요하지 않습니다. 단일 파일이 내부 라이브러리를 임시로 푸는 방식이라 첫 실행은 몇 초 느릴 수 있습니다. Windows SmartScreen이 표시될 수 있으며 현재 빌드는 코드 서명되지 않았습니다.
+가장 간단한 방법은 [최신 단일 실행 파일](https://github.com/nicekriss/FaceGridStamper/releases/latest/download/FaceGridStamper-windows-x64.exe)을 내려받아 바로 실행하는 것입니다. 설치나 압축 해제가 필요하지 않습니다. 단일 파일이 내부 라이브러리를 임시로 푸는 방식이라 첫 실행은 몇 초 느릴 수 있습니다. Windows SmartScreen이 표시될 수 있으며 현재 빌드는 코드 서명되지 않았습니다.
+
+### Git으로 받은 경우
+
+`git clone` 후 **Face Grid Stamper.cmd**를 더블클릭하세요. 실행 파일이 없으면 최신 Release를 `dist\FaceGridStamper.exe`로 한 번만 자동 다운로드하고 실행합니다. 이후에는 같은 CMD가 내려받은 파일을 바로 실행합니다. 소스를 직접 실행하거나 수정하려는 개발자는 아래의 개발 실행 절차를 사용하면 됩니다.
 
 ## 빠른 사용법
 
