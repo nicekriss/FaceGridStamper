@@ -10,7 +10,7 @@ import tkinter.font as tkfont
 import webbrowser
 from tkinter import colorchooser, filedialog, messagebox, ttk
 
-from PIL import Image, ImageTk
+from PIL import Image, ImageDraw, ImageTk
 from PIL.PngImagePlugin import PngInfo
 
 from face_grid_core import FaceRegion, detect_faces, render_regions
@@ -114,10 +114,21 @@ class RoundedButton(tk.Canvas):
         self.delete("all")
         width = max(1, self.winfo_width())
         height = max(1, self.winfo_height())
-        radius = min(12, height // 2)
-        self.create_arc(1, 1, radius * 2 + 1, height - 1, start=90, extent=180, fill=self.current_fill, outline="")
-        self.create_arc(width - radius * 2 - 1, 1, width - 1, height - 1, start=-90, extent=180, fill=self.current_fill, outline="")
-        self.create_rectangle(radius, 1, width - radius, height - 1, fill=self.current_fill, outline="")
+        render_scale = 4
+        button_bitmap = Image.new(
+            "RGB",
+            (width * render_scale, height * render_scale),
+            self.cget("background"),
+        )
+        drawing = ImageDraw.Draw(button_bitmap)
+        drawing.rounded_rectangle(
+            (1 * render_scale, 1 * render_scale, (width - 1) * render_scale, (height - 1) * render_scale),
+            radius=min(11, height // 2) * render_scale,
+            fill=self.current_fill,
+        )
+        button_bitmap = button_bitmap.resize((width, height), Image.Resampling.LANCZOS)
+        self.button_image = ImageTk.PhotoImage(button_bitmap)
+        self.create_image(0, 0, image=self.button_image, anchor="nw")
         self.create_text(width / 2, height / 2, text=self.text, fill=self.foreground, font=self.button_font)
 
 
